@@ -33,12 +33,12 @@ const dayMessage = (hours) => {
 };
 
 const getSetRise = (loc) => {
-  const API_KEY = config.GEO_KEY;
+  // const API_KEY = config.GEO_KEY;
   const options = {
     method: "GET",
   };
   fetch(
-    `https://api.ipgeolocation.io/astronomy?apiKey=${API_KEY}&location=${loc}`,
+    `https://api.ipgeolocation.io/astronomy?apiKey=4d43ad0f40ed462e811c4e9059e37740&location=${loc}`,
     options
   )
     .then((response) => response.json())
@@ -49,6 +49,7 @@ const getSetRise = (loc) => {
         ld_hours.innerHTML = getTime(response.day_length, "h");
         ld_mins.innerHTML = getTime(response.day_length, "m");
         day_message.innerHTML = dayMessage(getTime(response.day_length, "h"));
+        console.log(res);
       } else {
         toastr.error("Try a different location.", "Invalid Location");
       }
