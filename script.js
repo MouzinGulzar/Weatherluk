@@ -49,7 +49,6 @@ const getSetRise = (loc) => {
         ld_hours.innerHTML = getTime(response.day_length, "h");
         ld_mins.innerHTML = getTime(response.day_length, "m");
         day_message.innerHTML = dayMessage(getTime(response.day_length, "h"));
-        console.log(res);
       } else {
         toastr.error("Try a different location.", "Invalid Location");
       }
