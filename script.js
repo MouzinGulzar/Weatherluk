@@ -49,6 +49,9 @@ const getSetRise = (loc) => {
         ld_hours.innerHTML = getTime(response.day_length, "h");
         ld_mins.innerHTML = getTime(response.day_length, "m");
         day_message.innerHTML = dayMessage(getTime(response.day_length, "h"));
+        sun_distance.innerHTML = Math.ceil(response.sun_distance);
+        moon_distance.innerHTML = Math.ceil(response.moon_distance);
+        solar_noon.innerHTML = formatTime(response.solar_noon);
       } else {
         toastr.error("Try a different location.", "Invalid Location");
       }
