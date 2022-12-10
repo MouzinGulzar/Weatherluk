@@ -49,8 +49,8 @@ const getSetRise = async (loc) => {
         load("_100");
       }
     })
-    .then(() => getWeather(loc)) // Calls getWeather function.
-    .catch((err) => console.log(err));
+    .catch((err) => console.log(err))
+    .then(() => getWeather(loc)); // Calls getWeather function.
 };
 
 // Fectches weather from API
@@ -105,6 +105,15 @@ submit.addEventListener("click", (e) => {
   e.preventDefault();
   if (check()) {
     getSetRise(city.value);
+  }
+});
+
+city.addEventListener("keydown", (e) => {
+  if (e.keyCode === 13) {
+    e.preventDefault();
+    if (check()) {
+      getSetRise(city.value);
+    }
   }
 });
 
