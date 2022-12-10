@@ -110,7 +110,7 @@ submit.addEventListener("click", (e) => {
 
 city.addEventListener("keydown", (e) => {
   if (e.keyCode === 13) {
-    e.preventDefault();
+    // e.preventDefault();
     if (check()) {
       getSetRise(city.value);
     }
