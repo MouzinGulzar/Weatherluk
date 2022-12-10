@@ -142,6 +142,7 @@ const pctMessage = (pct) => {
   if (pct == 100) return "Enjoy the rain inside with loved ones.";
   else if (pct > 75) return "It must rain today, don't forget umbrella.";
   else if (pct > 30) return "It shows some clouds around you. It may rain.";
+  else if (pct > 15) return "Clouds above you?";
   else if (pct == 0) return "You can plan a trip. It would be mostly sunny.";
   else if (pct < 15) return "No showers. You can definetly go out.";
 };
