@@ -1,0 +1,80 @@
+.loading_bar {
+  height: 3px;
+}
+
+.show {
+  background-color: #6469f1;
+  box-shadow: 1px 1px 10px #6469f1;
+}
+
+.hide {
+  background-color: white;
+}
+
+._5 {
+  animation: load5 1s;
+  animation-fill-mode: forwards;
+}
+._25 {
+  animation: load25 1s;
+  animation-fill-mode: forwards;
+}
+._50 {
+  animation: load50 1s;
+  animation-fill-mode: forwards;
+}
+._75 {
+  animation: load75 1s;
+  animation-fill-mode: forwards;
+}
+._100 {
+  animation: load100 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes load5 {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 5%;
+  }
+}
+@keyframes load25 {
+  from {
+    width: 5%;
+  }
+  to {
+    width: 25%;
+  }
+}
+
+@keyframes load50 {
+  from {
+    width: 25%;
+  }
+  to {
+    width: 50%;
+  }
+}
+
+@keyframes load75 {
+  from {
+    width: 50%;
+  }
+  to {
+    width: 75%;
+  }
+}
+
+@keyframes load100 {
+  0% {
+    width: 75%;
+  }
+  99% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}
