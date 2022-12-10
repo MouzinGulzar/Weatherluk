@@ -1,3 +1,58 @@
+// Changes loader color to visible
+const loaderShow = () => {
+  loader.classList.add("show");
+};
+
+// Changes loader width to load
+const load = (load_class) => {
+  loaderShow();
+  loader.classList.add(load_class);
+};
+
+const loaderHide = () => {
+  loader.classList.remove("_5");
+  loader.classList.remove("_25");
+  loader.classList.remove("_50");
+  loader.classList.remove("_75");
+  loader.classList.remove("_100");
+  loader.classList.remove("show");
+};
+
+// Fetches Sunset, Sunrise and Day lenght from API
+const getSetRise = async (loc) => {
+  // const API_KEY = config.GEO_KEY;
+  load("_5");
+  const options = {
+    method: "GET",
+  };
+  await fetch(
+    `https://api.ipgeolocation.io/astronomy?apiKey=023098b0121f4352918342e1d60af5bf&location=${loc}`,
+    options
+  )
+    .then((response) => response.json())
+    .then((response) => {
+      load("_25");
+      // Check if API returned time details for current city. If not, it returns json text with error message.
+      if (!response.message) {
+        tcity_name.innerHTML = `in ${loc}`;
+        sunrise.innerHTML = formatTime(response.sunrise);
+        sunset.innerHTML = formatTime(response.sunset);
+        ld_hours.innerHTML = getTime(response.day_length, "h");
+        ld_mins.innerHTML = getTime(response.day_length, "m");
+        day_message.innerHTML = dayMessage(getTime(response.day_length, "h"));
+        sun_distance.innerHTML = Math.ceil(response.sun_distance);
+        moon_distance.innerHTML = Math.ceil(response.moon_distance);
+        load("_50");
+        solar_noon.innerHTML = formatTime(response.solar_noon);
+      } else {
+        toastr.error(`Can't get time for ${loc}`, "Try a different one!");
+        load("_100");
+      }
+    })
+    .then(() => getWeather(loc)) // Calls getWeather function.
+    .catch((err) => console.log(err));
+};
+
 // Fectches weather from API
 const getWeather = async (city) => {
   const options = {
@@ -35,41 +90,6 @@ const getWeather = async (city) => {
     })
     .catch((err) => console.log(err));
   loaderHide();
-};
-
-// Fetches Sunset, Sunrise and Day lenght from API
-const getSetRise = async (loc) => {
-  // const API_KEY = config.GEO_KEY;
-  load("_5");
-  const options = {
-    method: "GET",
-  };
-  await fetch(
-    `https://api.ipgeolocation.io/astronomy?apiKey=4d43ad0f40ed462e811c4e9059e37740&location=${loc}`,
-    options
-  )
-    .then((response) => response.json())
-    .then((response) => {
-      load("_25");
-      // Check if API returned time details for current city. If not, it returns json text with error message.
-      if (!response.message) {
-        tcity_name.innerHTML = `in ${loc}`;
-        sunrise.innerHTML = formatTime(response.sunrise);
-        sunset.innerHTML = formatTime(response.sunset);
-        ld_hours.innerHTML = getTime(response.day_length, "h");
-        ld_mins.innerHTML = getTime(response.day_length, "m");
-        day_message.innerHTML = dayMessage(getTime(response.day_length, "h"));
-        sun_distance.innerHTML = Math.ceil(response.sun_distance);
-        moon_distance.innerHTML = Math.ceil(response.moon_distance);
-        load("_50");
-        solar_noon.innerHTML = formatTime(response.solar_noon);
-      } else {
-        toastr.error(`Can't get time for ${loc}`, "Try a different one!");
-        load("_100");
-      }
-    })
-    .then(() => getWeather(loc)) // Calls getWeather function.
-    .catch((err) => console.log(err));
 };
 
 // By default shows weather of srinagar
@@ -123,26 +143,6 @@ const dayMessage = (hours) => {
   else if (hours > 8)
     return "You should have some rest after an exhausting day.";
   else if (hours > 0) return "You will have long dreams.";
-};
-
-// Changes loader color to visible
-const loaderShow = () => {
-  loader.classList.add("show");
-};
-
-// Changes loader width to load
-const load = (load_class) => {
-  loaderShow();
-  loader.classList.add(load_class);
-};
-
-const loaderHide = () => {
-  loader.classList.remove("_5");
-  loader.classList.remove("_25");
-  loader.classList.remove("_50");
-  loader.classList.remove("_75");
-  loader.classList.remove("_100");
-  loader.classList.remove("show");
 };
 
 // Formats 24h format into 12h format

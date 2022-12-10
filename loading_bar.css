@@ -11,6 +11,7 @@
   background-color: white;
 }
 
+/* Loading bar animation classes */
 ._5 {
   animation: load5 1s;
   animation-fill-mode: forwards;
@@ -32,6 +33,7 @@
   animation-fill-mode: forwards;
 }
 
+/* Loading bar animations */
 @keyframes load5 {
   from {
     width: 0%;
